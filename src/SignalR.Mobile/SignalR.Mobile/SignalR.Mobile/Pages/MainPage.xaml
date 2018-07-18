@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SignalR.Mobile.Pages"
+             xmlns:vm="clr-namespace:SignalR.Mobile.ViewModels"
+             xmlns:converters="clr-namespace:SignalR.Mobile.ValueConverters"
+             x:Class="SignalR.Mobile.Pages.MainPage"
+             Title="SignalR Example">
+    <ContentPage.BindingContext>
+        <vm:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Orientation="Vertical"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand">
+        <StackLayout Margin="10">
+            <Label Text="SignalR Server Address:"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="Start"
+                   FontSize="Medium" 
+                   VerticalTextAlignment="Center"/>
+            <Entry HorizontalOptions="FillAndExpand"
+                   Text="{Binding ServerAddress}"/>
+            <Button HorizontalOptions="CenterAndExpand"
+                    Command="{Binding ConnectionCommand}">
+                <Button.Text>
+                    <Binding Path="IsConnected">
+                        <Binding.Converter>
+                            <converters:BooleanToObjectConverter x:TypeArguments="x:String"
+                                                                 TrueObject="Disconnect"
+                                                                 FalseObject="Connect" />
+                        </Binding.Converter>
+                    </Binding>
+                </Button.Text>
+            </Button>
+        </StackLayout>
+        <BoxView Color="Gray" HeightRequest="1" />
+        <StackLayout Margin="10">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="User:"
+                       HorizontalTextAlignment="End"
+                       HorizontalOptions="Start"
+                       FontSize="Medium" 
+                       VerticalTextAlignment="Center"/>
+                <Entry HorizontalOptions="FillAndExpand"
+                       Text="{Binding User}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Message:"
+                       HorizontalTextAlignment="End"
+                       HorizontalOptions="Start"
+                       FontSize="Medium" 
+                       VerticalTextAlignment="Center" />
+                <Entry HorizontalOptions="FillAndExpand"
+                       Text="{Binding MessageToSend}" />
+            </StackLayout>
+            <Button HorizontalOptions="Start"
+                    Text="Send"
+                    Command="{Binding SendCommand}" />
+        </StackLayout>
+        <BoxView Color="Gray" HeightRequest="1" />
+        <StackLayout Margin="10">
+            <Label Text="Messages" FontSize="Medium" />
+            <ListView ItemsSource="{Binding AllMessages}"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding User}"
+                                       FontAttributes="Bold"
+                                       FontSize="Medium" />
+                                <Label Text="{Binding Message}"
+                                       FontSize="Small" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
