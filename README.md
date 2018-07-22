@@ -50,5 +50,5 @@ See the [Microsoft Docs](https://docs.microsoft.com/en-us/dotnet/framework/windo
 
 * **Sean Coon** - *Initial work* - [sean-coon](https://github.com/sean-coon)
 
-See also the list of [contributors](https://https://github.com/RezareSystems/signal-r-examples/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/RezareSystems/signal-r-examples/graphs/contributors) who participated in this project.
 
