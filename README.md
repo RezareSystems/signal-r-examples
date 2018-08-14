@@ -13,7 +13,8 @@ The server is configured to run on IIS Express, which, by default, doesn't allow
 1. Open command prompt as administrator
 2. Run `netsh http add urlacl url=http://[your IP address]:50091/ user=everyone`
 3. Open up port `50091` to TCP traffic through your firewall
-4. If IIS Express is currently running, restart it
+4. Update the site section in `.vs\config\applicationhost.config` (which can be found in your solution directory) to bind to your IP address.
+5. If IIS Express is currently running, restart it
 
 When you have finished using the app, it is good practice to stop IIS Express from listening by running `netsh http delete urlacl url=http://[your IP address]:50091/` in the command prompt as administrator.
 
